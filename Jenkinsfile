@@ -14,11 +14,9 @@ pipeline {
         }
         stage('Deploy to Tomcat') {
             steps {
-                withCredentials([sshUserPrivateKey(credentialsId: 'Jenkins SSH Key', keyFileVariable: 'KEY_FILE')]) {
-                    sh '''
-                        scp -i $KEY_FILE target/demo-0.0.1-SNAPSHOT.war guritch@172.26.129.25:/opt/tomcat/webapps
-                    '''
-                }
+                            // Шаг для копирования WAR-файла на сервер Tomcat
+                            deploy adapters: [tomcat9(credentialsId: 'tomcat-credentials', url: 'http://tomcat.example.com:8085/')], contextPath: 'myapp', war: '**/*.war'
+                        }
             }
         }
     }
