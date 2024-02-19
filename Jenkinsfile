@@ -13,9 +13,6 @@ pipeline {
             }
         }
         stage('Deploy to Tomcat') {
-            when {
-                branch 'master'
-            }
             steps {
                 sshagent(credentials: ['Jenkins SSH Key']) {
                     sh 'scp target/dist/DemoApplication.war guritch@172.26.129.25:/opt/tomcat/webapps'
