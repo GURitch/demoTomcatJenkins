@@ -15,7 +15,7 @@ pipeline {
         stage('Deploy to Tomcat') {
             steps {
                             // Шаг для копирования WAR-файла на сервер Tomcat
-                            deploy adapters: [tomcat8(credentialsId: 'tomcat-credentials', url: 'http://172.26.129.25:8080/')], contextPath: 'myapp', war: '**/*.war'
+                            deploy adapters: [tomcat8(credentialsId: 'tomcat-credentials', url: 'http://172.26.129.25:8085/')], contextPath: 'myapp', war: '**/*.war'
                         }
         }
     }
