@@ -1,10 +1,3 @@
-
-Ошибка указывает на то, что метод sshagent не найден среди шагов (steps) вашего Jenkins Pipeline. Это связано с тем, что вы используете неправильный метод для выполнения SSH-команд.
-
-Вместо sshagent вам нужно использовать withCredentials, чтобы передать учетные данные SSH в блок sh:
-
-groovy
-Copy code
 pipeline {
     agent any
 
