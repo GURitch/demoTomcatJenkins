@@ -13,9 +13,6 @@ pipeline {
             }
         }
         stage('Deploy to Tomcat') {
-            when {
-                branch 'master'
-            }
             steps {
                 withCredentials([sshUserPrivateKey(credentialsId: 'Jenkins SSH Key', keyFileVariable: 'KEY_FILE')]) {
                     sh '''
