@@ -22,7 +22,7 @@ target/
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/
-/dist/
+
 /nbdist/
 /.nb-gradle/
 build/
@@ -31,7 +31,8 @@ build/
 
 ### VS Code ###
 .vscode/
-/.mvn/
+
 /mvnw
 /mvnw.cmd
 /src/main/resources/application.properties
+/.mvn/
