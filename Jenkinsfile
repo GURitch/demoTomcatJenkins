@@ -1,3 +1,10 @@
+
+Ошибка указывает на то, что метод sshagent не найден среди шагов (steps) вашего Jenkins Pipeline. Это связано с тем, что вы используете неправильный метод для выполнения SSH-команд.
+
+Вместо sshagent вам нужно использовать withCredentials, чтобы передать учетные данные SSH в блок sh:
+
+groovy
+Copy code
 pipeline {
     agent any
 
@@ -13,9 +20,14 @@ pipeline {
             }
         }
         stage('Deploy to Tomcat') {
+            when {
+                branch 'master'
+            }
             steps {
-                sshagent(credentials: ['Jenkins SSH Key']) {
-                    sh 'scp target/dist/DemoApplication.war guritch@172.26.129.25:/opt/tomcat/webapps'
+                withCredentials([sshUserPrivateKey(credentialsId: 'Jenkins SSH Key', keyFileVariable: 'KEY_FILE')]) {
+                    sh '''
+                        scp -i $KEY_FILE target/demo-0.0.1-SNAPSHOT.war guritch@172.26.129.25:/opt/tomcat/webapps
+                    '''
                 }
             }
         }
