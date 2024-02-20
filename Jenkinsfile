@@ -14,9 +14,10 @@ pipeline {
         }
         stage('Deploy to Tomcat') {
             steps {
-                            // Шаг для копирования WAR-файла на сервер Tomcat
-                            deploy adapters: [tomcat9(credentialsId: 'tomcat-credentials', url: 'http://172.26.129.25:8085/')], contextPath: 'webapps', war: '**/*.war'
-                        }
+                   // Шаг для копирования WAR-файла на сервер Tomcat
+                                   withCredentials([usernamePassword(credentialsId: 'tomcat-credentials', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                                       deploy adapters: [tomcat9(credentialsId: 'tomcat-credentials', url: 'http://172.26.129.25:8085/')], contextPath: 'webapps', war: '**/*.war'
+                                   }
         }
     }
 }
