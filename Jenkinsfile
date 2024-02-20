@@ -16,7 +16,7 @@ pipeline {
             steps {
                 // Шаг для копирования WAR-файла на сервер Tomcat
                 withCredentials([usernamePassword(credentialsId: 'tomcat-credentials', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-                    deploy adapters: [tomcat9(credentialsId: 'tomcat-credentials', url: 'http://172.26.129.25:8085/')], contextPath: 'webapps', war: '**/*.war'
+                    deploy adapters: [tomcat9(credentialsId: 'tomcat-credentials', url: 'http://192.168.1.108:8080/')], war: '**/*.war'
                 }
             }
         }
