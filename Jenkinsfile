@@ -15,7 +15,7 @@ pipeline {
         stage('Deploy to Tomcat') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'tomcat-credentials', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-                           deploy adapters: [tomcat9(credentialsId: 'tomcat-credentials', url: 'http://172.26.129.25:8085/')], contextPath: 'webapps', war: '**/*.war'
+                           deploy adapters: [tomcat9(credentialsId: 'tomcat-credentials', url: 'http://192.168.1.108:8080/')], contextPath: 'webapps', war: '**/*.war'
                }
             }
         }
